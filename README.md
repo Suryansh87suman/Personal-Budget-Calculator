@@ -30,6 +30,3 @@ All entries are saved in a **CSV file** for easy record-keeping.
 
 ## 🚀 How to Run
 1. Install Python (>=3.7 recommended).
-2. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/personal-budget-calculator.git
