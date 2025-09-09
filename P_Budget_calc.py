@@ -13,6 +13,9 @@ def get_float_input(prompt):
     while True:
         try:
             value = float(input(prompt))
+            if value < 0:
+                print("⚠️ Please enter a non-negative number.")
+                continue
             return value
         except ValueError:
             print("⚠️ Invalid input! Please enter a number (e.g., 1000 or 2500.50).")
@@ -155,3 +158,4 @@ Features:
 Author: (Suryansh suman ✍️)
 1st year, B.Tech CSE-DS
 """
+
