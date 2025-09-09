@@ -7,27 +7,37 @@ import os
 from datetime import datetime
 #It allows us to work with dates and times, useful for timestamping our budget entries.
 
+# --------------- Function to safely take float input ---------------
+
+def get_float_input(prompt):
+    while True:
+        try:
+            value = float(input(prompt))
+            return value
+        except ValueError:
+            print("⚠️ Invalid input! Please enter a number (e.g., 1000 or 2500.50).")
+
 print("💰|------  Personal Buget Calculator  ------|💰\n")
 # -------- Income Section -----------
 
 print("📈|--- Income Section ---|📈\n")
 # -------- Income Categories -----------
-Monthly_salary=float(input("\t💵 Enter your Monthly Salary : "))
-Other_income=float(input("\t💵 Enter your Other Income (freelance, rent, interest, etc.) : "))
+Monthly_salary=get_float_input("\t💵 Enter your Monthly Salary : ")
+Other_income=get_float_input("\t💵 Enter your Other Income (freelance, rent, interest, etc.) : ")
 total_income=Monthly_salary+Other_income
 
 # -------- Expense Section -----------
 print("\n📉|--- Expense Section ---|📉\n")
 # -------- Expense Categories -----------
 print("\tEnter the following expenses : ")
-housing=float(input("\t🏠 Housing Expense (rent, EMI, maintenance) : "))
-Utlities=float(input("\t💡 Utlities Expense (electricity, water, gas, internet, phone) : "))
-Food_Groceries=float(input("\t🍎 Food & Groceries Expense : "))
-Transport=float(input("\t🚗 Transport Expense (fuel, public transport, vehicle maintenance) : "))
-Healthcare=float(input("\t⚕️ Healthcare Expense (medicines, doctor visits, insurance) : "))
-Education=float(input("\t📚 Education Expense (fees, books, courses) : "))
-Entertainment_Shopping=float(input("\t🎉🛍️ Entertaintment & Shopping Expense : "))
-Miscellaneous=float(input("\t📝 Miscellaneous : "))
+housing=get_float_input("\t🏠 Housing Expense (rent, EMI, maintenance) : ")
+Utlities=get_float_input("\t💡 Utlities Expense (electricity, water, gas, internet, phone) : ")
+Food_Groceries=get_float_input("\t🍎 Food & Groceries Expense : ")
+Transport=get_float_input("\t🚗 Transport Expense (fuel, public transport, vehicle maintenance) : ")
+Healthcare=get_float_input("\t⚕️ Healthcare Expense (medicines, doctor visits, insurance) : ")
+Education=get_float_input("\t📚 Education Expense (fees, books, courses) : ")
+Entertainment_Shopping=get_float_input("\t🎉🛍️ Entertaintment & Shopping Expense : ")
+Miscellaneous=get_float_input("\t📝 Miscellaneous : ")
 total_expense=housing+Utlities+Food_Groceries+Transport+Healthcare+Education+Entertainment_Shopping+Miscellaneous
 # -------- Balance Calculation -----------
 
@@ -102,7 +112,7 @@ file_exists = os.path.isfile(filename)
 with open(filename, mode="a", newline="") as file:
     writer = csv.writer(file)
     
-    # Write header if file is new
+    # ------------ Write header if file is new ------------
     if not file_exists:
         writer.writerow([
             "Date", "Monthly Salary", "Other Income", "Total Income",
@@ -111,7 +121,7 @@ with open(filename, mode="a", newline="") as file:
             "Total Expense", "Balance"
         ])
     
-    # Write data row
+    # ----------- Write data row -----------
     writer.writerow([
         datetime.now().strftime("%Y-%m-%d"),
         Monthly_salary, Other_income, total_income,
